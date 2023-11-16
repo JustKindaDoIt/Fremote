@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>EB LiteCommsV1</title>
+        <style>
+            body{
+                margin:0px;
+                padding:0px;
+                font-family: 'Roboto', sans-serif;
+                position: fixed;
+                overflow: hidden;
+            }
+            .box{
+                width:100%;
+                height:500px;
+                background:#eaeaea;
+                position:relative;
+                overflow:hidden;
+                cursor:crosshair;
+            }
+
+            .circle{
+                background:#f00;
+                width:120px;
+                height:120px;
+                border-radius:50%;
+                position:absolute;
+                
+                transform:translate3d(-50%,-50%,0);
+                transition:transform 0.2s cubic-bezier(.02,1.23,.79,1.08);
+            }
+            h1 {
+                position: absolute;
+                left:50%;
+                top:50%;
+                transform:translate(-50%,-50%);
+            }
+  
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script>
+            function printMousePos(event) {
+                
+                if(navigator.userAgent.includes('Safari')){
+                    return;
+                }
+
+                event.preventDefault();
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("demo").innerText = xhttp.responseText;
+                    }
+                };
+
+                var x = event.clientX - 55;
+                var y = event.clientY - 60;
+                $(".circle").css("transform","translate3d("+x+"px,"+y+"px,0px)");
+
+                xhttp.open("GET", "send/" + event.clientX + '/' + event.clientY, true);
+                xhttp.send();
+            }
+            document.addEventListener('mousemove', printMousePos, false);
+        </script>
+        <script>
+            function printMousePos_(event) {
+                if(!navigator.userAgent.includes('Safari')){
+                    console.log('non-saf');
+                    return;
+                }
+                event.preventDefault();
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("demo").innerText = xhttp.responseText;
+                    }
+                };
+                var touches = event.touches[0];
+
+                var x = touches.pageX - 55;
+                var y = touches.pageY - 60;
+                $(".circle").css("transform","translate3d("+x+"px,"+y+"px,0px)");
+
+                xhttp.open("GET", "send/" + touches.pageX + '/' + touches.pageY, true);
+                xhttp.send();
+            }
+
+            document.addEventListener('touchmove', printMousePos_, false)
+        </script>
+        <script type="text/javascript">
+            function init(event) {
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.open("GET", "dimensions/" + window.innerWidth + "/" + window.innerHeight, true);
+                xhttp.send();
+            }
+
+            document.addEventListener("DOMContentLoaded", init);
+        </script>
+        <script type="text/javascript">
+            function click(event){
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.open("GET", "click", true);
+                xhttp.send();
+            }
+
+            document.addEventListener("mousedown", click);
+        </script>
+    </head>
+    <body>
+        <div id="demo">Hello World!</div>
+            <div class="circle"></div>
+    </body>
+</html>
