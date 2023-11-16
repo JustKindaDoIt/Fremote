@@ -62,27 +62,6 @@
             document.addEventListener('mousemove', printMousePos, false);
         </script>
         <script type="text/javascript">
-            //IOS MOUSE CONTROL
-            function printMousePos_(event) {
-                if(!navigator.userAgent.includes('Safari')){
-                    console.log('non-saf');
-                    return;
-                }
-                event.preventDefault();
-                var xhttp = new XMLHttpRequest();
-                var touches = event.touches[0];
-
-                var x = touches.pageX - 55;
-                var y = touches.pageY - 60;
-                $(".circle").css("transform","translate3d("+x+"px,"+y+"px,0px)");
-
-                xhttp.open("GET", "send/" + touches.pageX + '/' + touches.pageY, true);
-                xhttp.send();
-            }
-
-            document.addEventListener('touchmove', printMousePos_, false)
-        </script>
-        <script type="text/javascript">
             //INIT
             function init(event) {
                 var xhttp = new XMLHttpRequest();
