@@ -13,6 +13,7 @@ var lastPoint = new njs.Point(0,0);
 var serverIP;
 
 const { networkInterfaces } = require('os');
+const { randomBytes, randomInt } = require('crypto');
 
 const nets = networkInterfaces();
 const results = Object.create(null); // Or just '{}', an empty object
@@ -32,7 +33,6 @@ for (const name of Object.keys(nets)) {
     }
 }
 
-
 exp.get('/', function (req, res) {
     res.sendFile('index.html', {root: __dirname});
   }
@@ -47,7 +47,7 @@ exp.use('/send/:x/:y',(req, res, next) => {
     res.send(req.params.x + ' ' + req.params.y);
     let coords = project(parseInt(req.params.x), parseInt(req.params.y), parseInt(clientX), parseInt(clientY), screenX, screenY);
     
-    next();
+    //next();
   }
 )
 
@@ -56,14 +56,28 @@ exp.use('/dimensions/:w/:h',(req, res, next) => {
   console.log(req.params.w + ' ' + req.params.h);
   clientX = req.params.w;
   clientY = req.params.h;
-  next();
+  //next();
   }
 )
 
 exp.use('/click',(req, res, next) => {
   res.send(req.params.w + ' ' + req.params.h);
   njs.mouse.click(njs.Button.LEFT);
-  next();
+  //next();
+  }
+)
+
+exp.use('/:v',(req, res, next) => {
+  res.sendFile('index.html', {root: __dirname});
+
+  njs.mouse.click(njs.Button.LEFT);
+
+  if(req.params.v == 'd'){
+    njs.keyboard.pressKey(njs.Key.Backspace);
+    njs.keyboard.releaseKey(njs.Key.Backspace);
+    return;
+  }
+  njs.keyboard.type(req.params.v);
   }
 )
 
@@ -81,4 +95,3 @@ function project(x, y, clientW, clientH, serverW, serverH)
 
   return { projectedX, projectedY };
 }
-
