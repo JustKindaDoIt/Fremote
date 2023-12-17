@@ -1,7 +1,3 @@
-//import color from 'picocolors';
-//import * as p from '@clack/prompts';
-//import { setTimeout } from 'node:timers/promises';
-
 const color = require('picocolors');
 const p = require('@clack/prompts');
 const timers = require('node:timers/promises')
@@ -167,14 +163,7 @@ async function main() {
     screenX = project.wprompt * 1.1;
     screenY = project.hprompt * 1.1;
 
-	if (project.install) {
-		const s = p.spinner();
-		s.start('Installing via pnpm');
-		await timers.setTimeout(2500);
-		s.stop('Installed via pnpm');
-	}
-
-	let nextSteps = `Dimensions: ${color.green(Math.round(screenX) + 'x' + Math.round(screenY))}         \nPort: ${color.green(project.port)}`;
+	let nextSteps = `Dimensions: ${color.green(Math.round(project.wprompt) + 'x' + Math.round(project.hprompt))}         \nPort: ${color.green(project.port)}`;
 
 	p.note(nextSteps, 'Overview');
 
