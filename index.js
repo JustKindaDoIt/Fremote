@@ -127,7 +127,7 @@ async function main() {
 
 	await timers.setTimeout(1000);
 
-	p.intro(`${color.bgRed(color.black(' Mote '))}`);
+	p.intro(`${color.bgRed(color.black(' MoteJS '))}`);
 
 	const project = await p.group(
 		{
