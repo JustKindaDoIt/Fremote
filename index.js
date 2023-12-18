@@ -164,7 +164,7 @@ async function main() {
     screenX = project.wprompt * 1.1;
     screenY = project.hprompt * 1.1;
 
-	let nextSteps = `Dimensions: ${color.green(Math.round(project.wprompt) + 'x' + Math.round(project.hprompt))}         \nPort: ${color.green(project.port)}`;
+	let nextSteps = `Dimensions: ${color.green(Math.round(project.wprompt) + 'x' + Math.round(project.hprompt))}         \nPort: ${color.green(project.port)}         \nOnly use Fremote on trusted networks.`;
 
 	p.note(nextSteps, 'Overview');
 
