@@ -39,4 +39,4 @@ The 'remote' (the device that has connected to the host) can currently
 ### Back-end
 The app is written in the NodeJS environment. Once the user navigates through the CLI, which is written with [Clack](https://github.com/natemoo-re/clack), a Node server is created on the host device with [Express](https://expressjs.com). The Express library manages GET and USE requests. XTTPS sent to the server is interpretted through USE. This data is then parsed to an [automation library](https://nutjs.dev) where the position of the client cursor is projected to the host and the cursor is moved.
 ### Front-end
-The user interface is an HTML5 document served to any device that connects to the host. The interface is minimal but is sending the live position of the cursor via XTTPS every time the cursor is moved.
+The user interface is an HTML5 document served to any device that connects to the host. The interface is minimal but is sending the live position of the cursor via XTTP every time the cursor is moved.
