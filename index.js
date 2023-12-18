@@ -1,3 +1,4 @@
+//nexe index.js -p C:\Users\jkdi\AppData\Local\Programs\Python\Python312 --build https://github.com/nexe/nexe/releases/download/v3.3.3/windows-x64-20.9.0 --ico icon.png -n Fremote-win
 const color = require('picocolors');
 const p = require('@clack/prompts');
 const timers = require('node:timers/promises')
@@ -123,7 +124,7 @@ async function main() {
 
 	await timers.setTimeout(1000);
 
-	p.intro(`${color.bgRed(color.black(' MoteJS '))}`);
+	p.intro(`${color.bgRed(color.black(' FremoteJS '))}`);
 
 	const project = await p.group(
 		{
