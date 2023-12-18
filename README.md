@@ -21,10 +21,19 @@ To install the program via download simply go to this [Dropbox](https://www.drop
 
 ## Controls 🎛
 The 'remote' (the device that has connected to the host) can currently
-* Move the host cursor.
-  * To move the host cursor, simply move the client cursor or place your finger on the client screen. The client position is then mapped to the host screen. This control is not relative like a mouse and can take getting used to, but is far faster than relative control on larger screens.
-* Type and enter key inputs.
-* Scroll.
+* Move the host cursor
+  * To move the host cursor, simply move the client cursor or place your finger on the client screen.
+  * The client position is then mapped to the host screen.
+  * This control is not relative like a mouse and can take getting used to, but is far faster than relative control on larger screens.
+* Type and enter key inputs
+  * To type on the host device, simply extend the URL of the remote with the string you wish to type.
+  * E.g. if I want to type `Brackeys`, I will update the URL on the remote browers to now be `96.84.220.93:3000/Brackeys` or for you `IP:PORT/Brackeys`.
+  * To enter a backspace append `/d` to the URL, as in `96.84.220.93:3000/d` or for you `IP:PORT/d`.
+* Scroll
+  * To scroll up, extend the URL with `/+` or `/n`.
+  * E.g. `96.84.220.93:3000/+`.
+  * To scroll down, extend the URL with `/-`.
+  * E.g. `96.84.220.93:3000/-`.
 
 ## Composition 🔎
 ### Back-end
