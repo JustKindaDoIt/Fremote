@@ -1,16 +1,5 @@
 # Fremote 📺
-Open-source Node.js CLI application used to convert instances of Safari and Chrome into wireless remote controls for a host device. This application was created so that I can control my 32" monitor from my bed (about 6ft away), like a TV.
-
-## Composition 🔎
-The application is comprised of two key components: index.html and index.js. 
-Index.html is a barebones HTML5 document with a circle that follows the cursor/touch location (for IOS) that is hosted on a server created by Index.js. It includes scripts that send XTTP requests to the server, containing client cursor/touch x,y and click events.
-Index.js uses the Node.js Express library to manage /get and /use requests. XTTPS is interpretted through Express /use and is parsed to the Nut.js automation library.
-
-Nut.js is used to move the cursor on the server machine to match the client cursor. As well as clicking and scrolling.
-
-When Index.js receives an endpoint it doesn't recognise, the endpoint is typed as a string on the server device.
-
-The application is primarily a teaching-tool, and should be appreciated as such. It is inefficient, but serves as an intuitive example of WEB3 protocols.
+Fremote is an open-source CLI application used to convert instances of Safari and Chrome into wireless remote controls for a host device. This application was created so that I can control my 32" monitor from my bed (about 6ft away), like a TV.
 
 ## Installation 📁
 There are two recommended methods of installation:
@@ -29,3 +18,16 @@ For convenience, the codebase can then be build as an .exe file with [Nexe](http
 
 ### Installation via download
 To install the program via download simply go to this [Dropbox](https://www.dropbox.com/scl/fo/dagkablwswvxfxw7idubl/h?rlkey=bmi7f7ysllwfjvw2y5te8cvx9&dl=0) folder and download the .exe file. This method of installation is currently **windows only**.
+
+## Controls 🎛
+The 'remote' (the device that has connected to the host) can currently
+* Move the host cursor.
+  * To move the host cursor, simply move the client cursor or place your finger on the client screen. The client position is then mapped to the host screen. This control is not relative like a mouse and can take getting used to, but is far faster than relative control on larger screens.
+* Type and enter key inputs.
+* Scroll.
+
+## Composition 🔎
+### Back-end
+The app is written in the NodeJS environment. Once the user navigates through the CLI, which is written with [Clack](https://github.com/natemoo-re/clack), a Node server is created on the host device with [Express](https://expressjs.com). The Express library manages GET and USE requests. XTTPS sent to the server is interpretted through USE. This data is then parsed to an [automation library](https://nutjs.dev) where the position of the client cursor is projected to the host and the cursor is moved.
+### Front-end
+The user interface is an HTML5 document served to any device that connects to the host. The interface is minimal but is sending the live position of the cursor via XTTPS every time the cursor is moved.
