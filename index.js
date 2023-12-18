@@ -124,7 +124,7 @@ async function main() {
 
 	await timers.setTimeout(1000);
 
-	p.intro(`${color.bgRed(color.black(' FremoteJS '))}`);
+	p.intro(`${color.bgMagenta(color.black(' FremoteJS '))}`);
 
 	const project = await p.group(
 		{
